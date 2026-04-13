@@ -1,12 +1,43 @@
-from aiogram import types, Router, Command
-from aiogram.filters import CommandStart
+from aiogram import types, Router
+from aiogram.filters import CommandStart, Command
 
 user_router = Router()
 
 
+# Я жирный физик и помогу тебе с заданиями такими как
+# 1.гДЗ-/gdz
+# 2.физик включает ИИ-ЛГБТ мод-/fizik
+# 3.Крутые задачи для физиков-ядерщиков-/zadacha
+# 4.Помощь с темой-/theme
+# 5.Инфо о боте-/info
+
 @user_router.message(CommandStart())
-async def stat_cmd(message: types.Message):
-    await message.answer("П̴̨̲͎̤͎̻͔͕̤̘̃̈͒̊̉̊͒̓̓̈́̇͛̚̚͝р̸͔̹̋͒̇̎̀̄̍̆͂͆̈́̾̚̚͘̕и̴̡̰̞̰̟͚̦̝̩̘̖̟̻̾̊͌͝в̸̢̨̰͎̝͔̻͚̻͈̜̟͔͍́͐̇́̋́͒̍͘̚͜͝е̵̛̫̯̟̣̥̮͓͖͙̹̺̣͈͗̏̕т̷̢̮͍͇̱̖̣͔̣̞̹̪͔̭̫́̃ͅͅ ̷̳͕͔̦̗̝̝̭̖̦͋͠н̷̢̛̘͚͓͕̞͎у̵̮͔̞̱̥̬͈̙̲̦̱̩̼͔̤͑̎̎́͆̓̉̾͌̽п̸̖͇̹͈̰͔̥̹̘̜̳͔̖̰̎̅͐̀̋̾̎̑͘ ̴̡̛͚̺̼͔̙̳̹̗̝̤̮͎͈̘͎̅́͒̒͒̍̉̀̉̏̓͋̉͘̕͜к̵͔̮̤̫̳͎͖̝͎̂̾̿̊̂̄͛͑̍ӧ̴̧͉͔̞̜̰́̔̊͆͊̃̑̂̄̈́͝͠т̶̻̯͉̩̖̖̮͕̻̯͔̏͑̓̈́̈́͜͠͠о̴͈͙̩̻͈̼͑̈̀̂̓͑́̓͠ͅр̶̼̳̺̘̤̻̲̭̭̖̙̦̾͗̈̎̽͗̌͒̃͊̇̀̽̍̈́́͌͜ы̸̨̝̞̣͇͉̭̱̻̹͋͌̒͗̀̃ͅй̶̯̖̳̦͉̘̹̻̗̙̭͓̎̄̊͆̔̈͛͗̓̓̈̎ ̵̨̢̲̯̠̹̰̯̤̘͍͈͓̗̝̬̎̐͋́͊̂̈̆̈́̈͜н̸̧̳̗̼̭̬̻̑̏̐̂ё̷͇̫̰͇̣́͛̈́ ̴̢͙͔̞͉͉̜̭͎̰͎͎̝̓͌̕͝з̷̩̟͆̂̀̃͆͘н̴̨̺̰̲̹͒̓̉а̴̛̪̯̄͛̽е̵̛̻͙̹̖̲̽͑͆̆͘͠͠͝т̷̧̢̲͚͈̪̬͎̪͈̟̲͚̭͒̀̃̈́͒̃͌̇͋͋͐̃͗͜ͅ ̶̡̢͈͎̖̥͕̼̩͈̠̰͕͊̉̐̀̄ф̶̢̧̼͉̘̘̝͊й̶̨̛͚̤͋͐̃̌̿̒̌̏̃̒̕͝͝͝з̸̢͙͖̀̌̊͋͘͠и̵̧̛̟͒̆̾̅̎͌̄̅̽͐͛̕̕̚͠к̸̡̩̮͍͓̜̠̬̖̓̓̌̓̾̑̀̿у̸͕̠̭͕̜̳͕̺͎͉͆͛̔̿́̽͐.̵̳̠̬̟̫̒̀̉̈́͒̂̎͝П̷͎͕͉͕͕̩͇̲̞̎ѝ̵̨̥̰̽̏ш̴̡̛̗͎̱̳̞͖̲͚͍͈̰̲̲̆̅̀͋͛̈́͑̍̔̿̍͜͝и̴̨̡̦͇̯̠̻̗͍̤̫̤̜͙̏̄̀͑͐͝ͅ ̵̨̞̰̺̲̹̣̗͍̙͖͙̘̌̀͗̅̊̋̈́̔͘ͅс̸̡͓̱̥̗̮̞̗̪̃͗̅̾̇в̶̧͓͙̘̫̗̃̋͝о̴̛͖͎̉̓͋ю̸̧̠͈̘͍͓͙̰̘̽̿͜͜ ̵̢̢͓͖̺̫̮͈̗̈́̃̽̏̈͒̓̋̊̔̒͋̚̕̚͝͠ͅж̴̣̓͋а̸͍̖̥͔͔̜̝̘̝͎̖̼̼̟͉͎̺̋̈́̔́̄͋̏̕̕л̵̡̨̞͇͇̟̲̭̯̣̟̦̻̎̂̈́̊͌̓͗͗̔ͅк̴̨̪͛͒̓̅̈́̐͝у̸̢͓̐̍̓͆͑̔̔̍̅̅͗̌͂͐ю̴̹̭͊͐́̽̎͆̋̈̊͠͝ ̵̼̻̜̐̀̃͑̂̉͑̓̑͑͂̚з̸̛̼͎͈̳̣̫̘͈̇͋̊̿͌̈́̿̇̿̓̏͘͜͠а̶̡̢̞̯͙̤̙̞̹̬̣̥̮̯̦͑̾͑̓̾̌́̌̎̇͘͘ͅͅд̵̗̭͖̩̯̈̀̽̊͜ӑ̷̞͉̦̞̥̘͍̼͋̕ч̴̡̨̝̤͎̝̲̥͚͎͆͛̓͂͗͑̊͛̅̉̌̒̈̿̎̚͜͝ͅк̶̢͍̮̤͖̯̘͓͕͓̮͖̱̣̏̈́̾̽̂̾̾̆͋̈́͑́͆̕ͅў̵̩͓̝̪̫̣̬̞̝̿̈́͒̈́̋̀̋̆̄͝")
+async def stat_cmd(message: types.message):
+    await message.answer(
+        """dfghj
+        /info - jfsldkjfskd""")
+
+
 @user_router.message(Command('info'))
 async def info(message: types.message):
     await message.answer('Я огромный жирный 2д физик решающий тебе задачи и так же могу быть ИИ-ЛГБТ монстром')
+
+
+@user_router.message(Command('gdz'))
+async def gdz(message: types.message):
+    await message.answer('ссылко')
+
+
+@user_router.message(Command('FizikAi'))
+async def Ai(message: types.message):
+    await message.answer('Режим Лгбт Физика')
+
+
+@user_router.message(Command('zadacha'))
+async def zadacha(message: types.message):
+    await message.answer('Крутая задача от физика')
+
+
+@user_router.message(Command('theme'))
+async def theme(message: types.message):
+    await message.answer('пиши свою глупую тему')
