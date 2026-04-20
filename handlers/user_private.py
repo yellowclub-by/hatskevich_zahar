@@ -1,4 +1,4 @@
-from aiogram import types, Router
+from aiogram import types, Router , F
 from aiogram.filters import CommandStart, Command
 
 user_router = Router()
@@ -20,7 +20,7 @@ async def stat_cmd(message: types.message):
 
 @user_router.message(Command('info'))
 async def info(message: types.message):
-    await message.answer('Я огромный жирный 2д физик решающий тебе задачи и так же могу быть ИИ-ЛГБТ монстром')
+    await message.answer('решатель задач по физике')
 
 
 @user_router.message(Command('gdz'))
@@ -30,7 +30,7 @@ async def gdz(message: types.message):
 
 @user_router.message(Command('FizikAi'))
 async def Ai(message: types.message):
-    await message.answer('Режим Лгбт Физика')
+    await message.answer('Режим Физика')
 
 
 @user_router.message(Command('zadacha'))
@@ -40,4 +40,16 @@ async def zadacha(message: types.message):
 
 @user_router.message(Command('theme'))
 async def theme(message: types.message):
-    await message.answer('пиши свою глупую тему')
+    await message.answer('пиши свою тему')
+
+#@user_router.message(F.text)#filter text
+#@user_router.message(F.image == 'физик')#filter image
+#@user_router.message(F.text == 'физик')#filter texta
+#@user_router.message(F.text.lower()== "физик")#filter lower
+#@user_router.message(F.text.lower().contains("fizik"))#filter контейнер
+#@user_router.message(F.text.lower().endwith("?"))#filter заканчивается на
+# @user_router.message(F.text.lower().endswith("?"))
+@user_router.message(F.text.lower().startswith("ты"))
+async def echo(message: types.Message):
+    await message.answer('да')
+
