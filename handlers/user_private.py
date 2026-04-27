@@ -1,6 +1,8 @@
 from aiogram import types, Router , F
 from aiogram.filters import CommandStart, Command
 
+from keyboards import reply
+
 user_router = Router()
 
 
@@ -13,31 +15,38 @@ user_router = Router()
 
 @user_router.message(CommandStart())
 async def stat_cmd(message: types.message):
-    await message.answer(
-        """dfghj
-        /info - jfsldkjfskd""")
+    await message.answer("""info - /zadacha 
+      /gdz
+      /FizikAi
+      /krytayazadacha
+      /theme""",reply_markup=reply.start_kb)
 
-
-@user_router.message(Command('info'))
-async def info(message: types.message):
+@user_router.message(F.text.lower().contains("задач"))
+@user_router.message(F.text.lower() == 'задача')
+@user_router.message(Command('zadacha'))
+async def zadacha(message: types.message):
     await message.answer('решатель задач по физике')
 
-
+@user_router.message(F.text.lower().contains("гдз"))
+@user_router.message(F.text.lower() == 'гдз')
 @user_router.message(Command('gdz'))
 async def gdz(message: types.message):
     await message.answer('ссылко')
 
-
+@user_router.message(F.text.lower().contains("ИИ"))
+@user_router.message(F.text.lower() == 'ИИ')
 @user_router.message(Command('FizikAi'))
 async def Ai(message: types.message):
     await message.answer('Режим Физика')
-
-
-@user_router.message(Command('zadacha'))
-async def zadacha(message: types.message):
+@user_router.message(F.text.lower().contains('крутаязадач'))
+@user_router.message(F.text.lower()== 'крутаязадача' )
+@user_router.message(Command('krytayazadacha'))
+async def krytayazadacha(message: types.message):
     await message.answer('Крутая задача от физика')
 
 
+@user_router.message(F.text.lower().contains("тем"))
+@user_router.message(F.text.lower() == 'тема')
 @user_router.message(Command('theme'))
 async def theme(message: types.message):
     await message.answer('пиши свою тему')
@@ -49,7 +58,7 @@ async def theme(message: types.message):
 #@user_router.message(F.text.lower().contains("fizik"))#filter контейнер
 #@user_router.message(F.text.lower().endwith("?"))#filter заканчивается на
 # @user_router.message(F.text.lower().endswith("?"))
-@user_router.message(F.text.lower().startswith("ты"))
+@user_router.message(F.text.lower().contains("ты"))
 async def echo(message: types.Message):
     await message.answer('да')
 
