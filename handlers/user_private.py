@@ -16,10 +16,10 @@ user_router = Router()
 @user_router.message(CommandStart())
 async def stat_cmd(message: types.message):
     await message.answer("""info - /zadacha 
-      /gdz
-      /FizikAi
-      /krytayazadacha
-      /theme""",reply_markup=reply.start_kb)
+    /gdz
+    /FizikAi
+    /krytayazadacha
+    /theme""",reply_markup=reply.start_kb)
 
 @user_router.message(F.text.lower().contains("задач"))
 @user_router.message(F.text.lower() == 'задача')
