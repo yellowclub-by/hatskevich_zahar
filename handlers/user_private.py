@@ -15,39 +15,39 @@ user_router = Router()
 
 @user_router.message(CommandStart())
 async def stat_cmd(message: types.message):
-    await message.answer("""info - /zadacha 
-    /gdz
-    /FizikAi
-    /krytayazadacha
-    /theme""",reply_markup=reply.start_kb)
+    await message.answer("""info - /задача 
+    /гдз
+    /ИИ
+    /интеллект
+    /тема""",reply_markup=reply.start_kb)
 
 @user_router.message(F.text.lower().contains("задач"))
 @user_router.message(F.text.lower() == 'задача')
-@user_router.message(Command('zadacha'))
+@user_router.message(Command('задача'))
 async def zadacha(message: types.message):
     await message.answer('решатель задач по физике')
 
 @user_router.message(F.text.lower().contains("гдз"))
 @user_router.message(F.text.lower() == 'гдз')
-@user_router.message(Command('gdz'))
+@user_router.message(Command('гдз'))
 async def gdz(message: types.message):
-    await message.answer('ссылко')
+    await message.answer('ссылко', reply_markup=reply.fizik_kb)
 
-@user_router.message(F.text.lower().contains("ИИ"))
-@user_router.message(F.text.lower() == 'ИИ')
-@user_router.message(Command('FizikAi'))
+@user_router.message(F.text.lower().contains("ии"))
+@user_router.message(F.text.lower() == 'ии')
+@user_router.message(Command('ии'))
 async def Ai(message: types.message):
     await message.answer('Режим Физика')
-@user_router.message(F.text.lower().contains('крутаязадач'))
-@user_router.message(F.text.lower()== 'крутаязадача' )
-@user_router.message(Command('krytayazadacha'))
+@user_router.message(F.text.lower().contains('интеллект'))
+@user_router.message(F.text.lower()== 'интеллект' )
+@user_router.message(Command('интеллект'))
 async def krytayazadacha(message: types.message):
     await message.answer('Крутая задача от физика')
 
 
 @user_router.message(F.text.lower().contains("тем"))
 @user_router.message(F.text.lower() == 'тема')
-@user_router.message(Command('theme'))
+@user_router.message(Command('тема'))
 async def theme(message: types.message):
     await message.answer('пиши свою тему')
 
@@ -61,4 +61,6 @@ async def theme(message: types.message):
 @user_router.message(F.text.lower().contains("ты"))
 async def echo(message: types.Message):
     await message.answer('да')
+    return
+
 

@@ -10,6 +10,6 @@ async def cleaner(message: types.message):
     word_list = message.text.split(" ")
     for word in word_list:
         if word.lower() in rejected_words:
+            await message.answer(F"{message.from_user.first_name},Сообщение ты 😡😡😡😡 и нарушил правил")
             await message.delete()
             break
-
