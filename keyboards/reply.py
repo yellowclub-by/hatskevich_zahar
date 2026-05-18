@@ -1,4 +1,6 @@
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, keyboard_button
+
+back_btn = KeyboardButton(text='Назад')
 
 start_kb = ReplyKeyboardMarkup(
     keyboard=[
@@ -12,5 +14,7 @@ fizik_kb = ReplyKeyboardMarkup(
     keyboard=[
         [KeyboardButton(text='7'), KeyboardButton(text='8'), KeyboardButton(text='9')],
         [KeyboardButton(text='11'), KeyboardButton(text='10')],
+        [back_btn]
+
     ],resize_keyboard=True
 )

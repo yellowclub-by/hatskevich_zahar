@@ -1,6 +1,6 @@
 from aiogram import types, Router , F
 from aiogram.filters import CommandStart, Command
-
+from aiogram.types import FSInputFile
 from keyboards import reply
 
 user_router = Router()
@@ -15,39 +15,40 @@ user_router = Router()
 
 @user_router.message(CommandStart())
 async def stat_cmd(message: types.message):
-    await message.answer("""info - /задача 
-    /гдз
-    /ИИ
-    /интеллект
-    /тема""",reply_markup=reply.start_kb)
+    photo = FSInputFile("fizik/fisiks.jpg")
+    await message.answer_photo(photo,caption="""info - 
+    /gdz
+    /ai
+    /intellekt
+    /theme""",reply_markup=reply.start_kb)
 
 @user_router.message(F.text.lower().contains("задач"))
-@user_router.message(F.text.lower() == 'задача')
-@user_router.message(Command('задача'))
+@user_router.message(F.text.lower() == 'задач')
+@user_router.message(Command('intellekt'))
 async def zadacha(message: types.message):
     await message.answer('решатель задач по физике')
 
 @user_router.message(F.text.lower().contains("гдз"))
 @user_router.message(F.text.lower() == 'гдз')
-@user_router.message(Command('гдз'))
+@user_router.message(Command('gdz'))
 async def gdz(message: types.message):
     await message.answer('ссылко', reply_markup=reply.fizik_kb)
 
 @user_router.message(F.text.lower().contains("ии"))
 @user_router.message(F.text.lower() == 'ии')
-@user_router.message(Command('ии'))
+@user_router.message(Command('AI'))
 async def Ai(message: types.message):
-    await message.answer('Режим Физика')
+    await message.answer('Режим Физика', reply_markup=reply.start_kb)
 @user_router.message(F.text.lower().contains('интеллект'))
 @user_router.message(F.text.lower()== 'интеллект' )
-@user_router.message(Command('интеллект'))
+@user_router.message(Command('intellekt'))
 async def krytayazadacha(message: types.message):
     await message.answer('Крутая задача от физика')
 
 
 @user_router.message(F.text.lower().contains("тем"))
 @user_router.message(F.text.lower() == 'тема')
-@user_router.message(Command('тема'))
+@user_router.message(Command('theme'))
 async def theme(message: types.message):
     await message.answer('пиши свою тему')
 
